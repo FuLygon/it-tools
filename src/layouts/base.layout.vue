@@ -3,6 +3,7 @@ import { NIcon, useThemeVars } from 'naive-ui';
 
 import { RouterLink } from 'vue-router';
 import { Heart, Home2, Menu2 } from '@vicons/tabler';
+import { onMounted } from 'vue';
 
 import { storeToRefs } from 'pinia';
 import HeroGradient from '../assets/hero-gradient.svg?component';
@@ -30,6 +31,15 @@ const tools = computed<ToolCategory[]>(() => [
   ...(favoriteTools.value.length > 0 ? [{ name: t('tools.categories.favorite-tools'), components: favoriteTools.value }] : []),
   ...toolsByCategory.value,
 ]);
+
+const script = document.createElement('script');
+script.defer = true;
+script.src = 'https://analytics.fulygon.com/script.js';
+script.dataset.websiteId = 'a69cbe4d-8dd4-46ed-a7b1-46d9bb3dbf32';
+
+onMounted(() => {
+  document.head.appendChild(script);
+});
 </script>
 
 <template>
